@@ -2,6 +2,13 @@
 - `brew install php`
 - `brew install composer`
 
+## Usefull Commands
+- `php artisan view:clear` 
+This will clear any cached views, and you can then rest assured that you'll see your newest HTML templates in the browser.
+
+## Usefull Extensions
+- `laravel blade snippets'
+
 ## Terminal Commands
 ### Creating a new project
 <u>Step 1</u>: Navigate to the folder using a terminal  
@@ -50,3 +57,15 @@ and we use it in the routes
 ```php
 Route::get('/',[ExampleController::class,"homepage"])
 ```
+
+<br><hr>
+
+### View - Blade
+Create a new .blade.php file in `views` folder
+Call the new file in your controller you created
+
+Blade can dipslay dynamic content by using {{}}
+
+#### <u>Seperation of concerns</u>
+Controller must have all the complexility and not the blade file
+inside the return of the controller,you pass the data in the view
