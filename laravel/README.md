@@ -34,3 +34,19 @@ Route::get('/about', function () {
     return '<h1>About Page</h1><a href="/">View the Home page</a>';
 });
 ```
+
+Create Controllers
+
+in terminal: `php artisan make:controller <controllerName>`
+eg. `php artisan make:controller ExampleController`
+
+Go in app/Http/Controllers/ and see your new controller
+
+Inside the new controller make a public function (name of your choice) where will return the html that the web.php contains
+
+Inside the <i>web.php</i> we import the new controller
+` use App\Http\Controllers\ExampleController` (with backslash)
+and we use it in the routes
+```php
+Route::get('/',[ExampleController::class,"homepage"])
+```
