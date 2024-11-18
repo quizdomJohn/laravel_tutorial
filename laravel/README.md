@@ -20,3 +20,17 @@ The only difference is the =10 after the laravel/laravel package name.
 - `php -S localhost:8000`  
 for running the application to a browser (needs an index file in order to run)
 - `php artisan serve`
+
+# Branches
+## Route
+Create routes in <i>web.php</i>
+```php
+Route::get('/', function () {
+    return '<h1>Home Page</h1><a href="/about">View the About page</a>';
+});
+```
+```php
+Route::get('/about', function () {
+    return '<h1>About Page</h1><a href="/">View the Home page</a>';
+});
+```
