@@ -198,3 +198,7 @@ Under the input you want, enter
 @enderror
 ```
 where in parenthesis is the field that is error about and the message comes from Laravel
+
+### Keep validated inputs
+In order the validated inputs doesn't clear when an input is invalidated  
+`<input value="{{old('username')}}" name=.... />`
