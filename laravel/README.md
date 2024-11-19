@@ -5,9 +5,13 @@
 ## Usefull Commands
 - `php artisan view:clear` 
 This will clear any cached views, and you can then rest assured that you'll see your newest HTML templates in the browser.
+- `@csrf`  
+for bypassing security when submitting a form  
+Placed under the form
 
 ## Usefull Extensions
-- `laravel blade snippets'
+- `laravel blade snippets`
+- `php namespace resolver`
 
 ## Terminal Commands
 ### Creating a new project
@@ -44,7 +48,7 @@ Route::get('/about', function () {
 
 Create Controllers
 
-in terminal: `php artisan make:controller <controllerName>`
+in terminal: `php artisan make:controller <controllerName>`  
 eg. `php artisan make:controller ExampleController`
 
 Go in app/Http/Controllers/ and see your new controller
@@ -151,3 +155,12 @@ the database will see the new migration and update it
 If you changed your mind you can type  
 `php artisan migrate:rollback`  
 to undo it
+
+<br><hr><hr>
+
+## Forms
+We try after submitting, to send a POST request to /register
+We need to create a controller  
+`php artisan make:controller UserController`  
+and we add it to the web.php  
+Inside the controller we take the data that user typed in the inputs and we validate them
