@@ -186,3 +186,6 @@ we do the validation in the controller
 ```
 `confirmed` => declare that this field has another one that needs to match each other  
 In order to declare which is the other field,we go to the HTML and in the input name, after the name we add `_confirmation`
+
+### Hashing Password
+Using `bcrypt()` function

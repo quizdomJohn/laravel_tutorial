@@ -14,6 +14,10 @@ class UserController extends Controller
             'email'=>['required','email',Rule::unique('users','email')],
             'password'=>['required','min:8','confirmed'],
         ]);
+
+        // before saving the inputs to the database,we need to hash the password
+        $incomingFields['password'] = bcrypt($incomingFields['password']);
+        
         User::create($incomingFields); // we use the User model in order to save the inputs data in the database
     }
 }
