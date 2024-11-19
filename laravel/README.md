@@ -168,3 +168,21 @@ Inside the controller we take the data that user typed in the inputs and we vali
 ### Store the input values in the database
 In the controller we use the 'User' model  
 <b><u>Important:</u></b> you need to go to the <i>Http->Models->User.php</i> and make sure the fillable names are the same that you are using in your database
+
+### Form Validation
+we do the validation in the controller
+```php
+ 'username'=>['required','min:3','max:20',Rule::unique('users','username')]
+```
+`min:3` => minimum 3 characters  
+`max:20` => maximum 20 characters  
+`Rule::unique('users','username')` => creatin a specific rule where we want to check in our database named 'users' in the column 'username',if the name already exists
+```php
+'email'=>['required','email',Rule::unique('users','email')],
+```
+`email`=> the format to be email
+```
+'password'=>['required','min:8','confirmed'],
+```
+`confirmed` => declare that this field has another one that needs to match each other  
+In order to declare which is the other field,we go to the HTML and in the input name, after the name we add `_confirmation`
