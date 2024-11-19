@@ -70,7 +70,11 @@ Blade can dipslay dynamic content by using {{}}
 Controller must have all the complexility and not the blade file
 inside the return of the controller,you pass the data in the view
 
-### Avoid Duplication
+### Avoid Duplication (1st way)
 Create another .blade.php file (header.blade.php) where will contain the HTML for the header and import it to other views like this
 `@include ('header')`
+
+### Avoid Duplication (2nd way)
+Create a folder components and in there a file 'layout.blade.php'  
+In there will be the header AND the footer and between them there will be a `{{$slot}}`
 
