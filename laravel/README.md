@@ -189,3 +189,12 @@ In order to declare which is the other field,we go to the HTML and in the input 
 
 ### Hashing Password
 Using `bcrypt()` function
+
+### Displaying validation errors
+Under the input you want, enter 
+```php
+@error('username')
+    <p>{{$message}}</p>
+@enderror
+```
+where in parenthesis is the field that is error about and the message comes from Laravel
