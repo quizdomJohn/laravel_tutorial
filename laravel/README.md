@@ -164,3 +164,7 @@ We need to create a controller
 `php artisan make:controller UserController`  
 and we add it to the web.php  
 Inside the controller we take the data that user typed in the inputs and we validate them
+
+### Store the input values in the database
+In the controller we use the 'User' model  
+<b><u>Important:</u></b> you need to go to the <i>Http->Models->User.php</i> and make sure the fillable names are the same that you are using in your database
