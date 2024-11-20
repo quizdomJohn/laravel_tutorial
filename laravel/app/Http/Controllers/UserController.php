@@ -16,6 +16,7 @@ class UserController extends Controller
 
         // check if the user exists
         if (auth()->attempt(['username'=>$incomingFields['loginusername'],'password'=>$incomingFields['loginpassword']])){
+            $request->session()->regenerate(); // so the user stays logged in (check cookies)
             return 'Logged in!!!';
         }else{
             return 'You are not logged in!!!!';

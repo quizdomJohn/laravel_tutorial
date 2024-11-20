@@ -225,3 +225,8 @@ and we check if exist in database
         return 'You are not logged in!!!!';
     }
 ```
+
+### Keep user logged in
+```php
+$request->session()->regenerate(); // so the user stays logged in (check cookies)
+```
