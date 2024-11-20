@@ -230,3 +230,12 @@ and we check if exist in database
 ```php
 $request->session()->regenerate(); // so the user stays logged in (check cookies)
 ```
+
+### Render different heading depending authentication
+```php
+@auth
+// template for logged in users
+@else
+// template for unlogged users
+@endauth
+```
