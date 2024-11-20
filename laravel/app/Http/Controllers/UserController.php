@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function logout(){
         auth()->logout();
-        return redirect('/');
+        return redirect('/')->with('success','You just logged out'); // 'success' is a name of our choice
     }
 
     public function showCorrectHomepage(){
@@ -30,9 +30,9 @@ class UserController extends Controller
         // check if the user exists
         if (auth()->attempt(['username'=>$incomingFields['loginusername'],'password'=>$incomingFields['loginpassword']])){
             $request->session()->regenerate(); // so the user stays logged in (check cookies)
-            return redirect('/');
+            return redirect('/')->with('success','You just logged in'); // 'success' is a name of our choice
         }else{
-            return 'You are not logged in!!!!';
+            return redirect('/')->with('failure','Invalid credentials'); // 'failure' is a name of our choice
         }
     }
 
@@ -46,6 +46,8 @@ class UserController extends Controller
         // before saving the inputs to the database,we need to hash the password
         $incomingFields['password'] = bcrypt($incomingFields['password']);
         
-        User::create($incomingFields); // we use the User model in order to save the inputs data in the database
+        $user=User::create($incomingFields); // we use the User model in order to save the inputs data in the database
+        auth()->login($user); //in order to make the user loggedin when he registers
+        return redirect('/')->with('success','You maaadeee iiiit!!!!');
     }
 }

@@ -48,6 +48,19 @@
     </header>
     <!-- header ends here -->
 
+    {{-- check if a message is contained (is about login and logout) --}}
+    @if (session()->has('success'))
+        <div>
+          <div>{{session('success')}}</div>
+        </div>
+    @endif
+    {{-- in case user tries to login with invalid credential,a message pops up --}}
+    @if (session()->has('failure'))
+      <div>
+        <div>{{session('failure')}}</div>
+      </div>
+    @endif
+
         {{$slot}}
 
     <!-- footer begins -->

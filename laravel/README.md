@@ -259,3 +259,27 @@ if (auth()->check()) { // if user is logged in
 
 ### Redirect the user
 `return redirect('/');`
+
+## Popups messages
+To inform user when is logging in or logging out, when he redirects  
+`return redirect('/')->with('success','You just logged out'); // 'success' is a name of our choice`
+
+in order to dipsplay it we go to the <i>Layout.blade.php</i> and checking for existance of a message
+```php
+    @if (session()->has('success'))
+        <div>
+          <div>{{session('success')}}</div>
+        </div>
+    @endif
+```
+
+with the same logic we set messages of success or failure when a user logs in our out or registers
+
+### Login user when he registers
+Since this  
+`User::create($incomingFields);`  
+not only saves the user in the database but also returns the user.  
+we save it  
+`$user=User::create($incomingFields);`  
+and we use it to create the cookie  
+`auth()->login($user);`
