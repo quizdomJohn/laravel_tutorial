@@ -204,6 +204,8 @@ where in parenthesis is the field that is error about and the message comes from
 In order the validated inputs doesn't clear when an input is invalidated  
 `<input value="{{old('username')}}" name=.... />`
 
+<br><hr><hr>
+
 ## Authentication
 create a route for submitting the login form in web.php  
 create a controller in UserController.php
@@ -238,4 +240,14 @@ $request->session()->regenerate(); // so the user stays logged in (check cookies
 @else
 // template for unlogged users
 @endauth
+```
+
+### Render different template depending authentication
+modify the controller and display a different view if the user is logged in
+```php
+if (auth()->check()) { // if user is logged in
+    return view('homepage-feed');
+    } else {
+        return view('homepage');
+    }
 ```

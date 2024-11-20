@@ -15,7 +15,7 @@ use App\Http\Controllers\ExampleController;
 |
 */
 
-Route::get('/',[ExampleController::class,"homepage"]);
+Route::get('/',[UserController::class,"showCorrectHomepage"]); //modified so it will show a template depending if the user is logged in
 Route::get('/about',[ExampleController::class,"aboutpage"]);
 Route::post('/register',[UserController::class,'register']);
 Route::post('/login',[UserController::class,'login']);
