@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         // create the new column you want to add
-        Schema::table('user',function($table){
+        // 'users' is the name of the table
+        Schema::table('users',function($table){
             $table->string('favoriteColor');
         });
     }
@@ -23,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::table('user',function($table){
+        Schema::table('users',function($table){
             $table->dropColumn('favoriteColor');
         });
     }
