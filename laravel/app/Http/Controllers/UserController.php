@@ -8,6 +8,10 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+    public function logout(){
+        auth()->logout();
+        return 'you are logged out';
+    }
 
     public function showCorrectHomepage(){
         if (auth()->check()) { // if user is logged in

@@ -207,6 +207,8 @@ In order the validated inputs doesn't clear when an input is invalidated
 <br><hr><hr>
 
 ## Authentication
+
+### Login a user
 create a route for submitting the login form in web.php  
 create a controller in UserController.php
 
@@ -251,3 +253,7 @@ if (auth()->check()) { // if user is logged in
         return view('homepage');
     }
 ```
+
+### Logout a user
+`auth()->logout();`
+
