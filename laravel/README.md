@@ -203,3 +203,25 @@ where in parenthesis is the field that is error about and the message comes from
 ### Keep validated inputs
 In order the validated inputs doesn't clear when an input is invalidated  
 `<input value="{{old('username')}}" name=.... />`
+
+## Authentication
+create a route for submitting the login form in web.php  
+create a controller in UserController.php
+
+in there we make the inputs to be required 
+```php
+    public function login(Request $request){
+        $incomingFields=$request->validate([
+            'loginusername'=>'required', //. loginusername is the name that the input has in the html
+            'loginpassword'=>'required' //. loginpassword is the name that the input has in the html
+        ]);
+```
+and we check if exist in database
+```php
+    // check if the user exists
+    if (auth()->attempt(['username'=>$incomingFields['loginusername'],'password'=>$incomingFields['loginpassword']])){
+        return 'Logged in!!!';
+    }else{
+        return 'You are not logged in!!!!';
+    }
+```

@@ -18,3 +18,4 @@ use App\Http\Controllers\ExampleController;
 Route::get('/',[ExampleController::class,"homepage"]);
 Route::get('/about',[ExampleController::class,"aboutpage"]);
 Route::post('/register',[UserController::class,'register']);
+Route::post('/login',[UserController::class,'login']);

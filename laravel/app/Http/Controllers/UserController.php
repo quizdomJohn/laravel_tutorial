@@ -8,6 +8,20 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+    public function login(Request $request){
+        $incomingFields=$request->validate([
+            'loginusername'=>'required', //. loginusername is the name that the input has in the html
+            'loginpassword'=>'required' //. loginpassword is the name that the input has in the html
+        ]);
+
+        // check if the user exists
+        if (auth()->attempt(['username'=>$incomingFields['loginusername'],'password'=>$incomingFields['loginpassword']])){
+            return 'Logged in!!!';
+        }else{
+            return 'You are not logged in!!!!';
+        }
+    }
+
     public function register(Request $request){ // we are taking the incoming data that submitted in the form
         $incomingFields = $request->validate([ //to make the fields required in order to submit it
             'username'=>['required','min:3','max:20',Rule::unique('users','username')],
