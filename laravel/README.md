@@ -257,3 +257,5 @@ if (auth()->check()) { // if user is logged in
 ### Logout a user
 `auth()->logout();`
 
+### Redirect the user
+`return redirect('/');`

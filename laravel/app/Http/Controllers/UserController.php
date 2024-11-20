@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function logout(){
         auth()->logout();
-        return 'you are logged out';
+        return redirect('/');
     }
 
     public function showCorrectHomepage(){
@@ -30,6 +30,7 @@ class UserController extends Controller
         // check if the user exists
         if (auth()->attempt(['username'=>$incomingFields['loginusername'],'password'=>$incomingFields['loginpassword']])){
             $request->session()->regenerate(); // so the user stays logged in (check cookies)
+            return redirect('/');
         }else{
             return 'You are not logged in!!!!';
         }
