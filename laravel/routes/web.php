@@ -17,13 +17,14 @@ use App\Http\Controllers\UserController;  //import it
 */
 
 // User related routes
-Route::get('/',[UserController::class,"showCorrectHomepage"]); //modified so it will show a template depending if the user is logged in
+Route::get('/',[UserController::class,"showCorrectHomepage"])->name('login'); //modified so it will show a template depending if the user is logged in
+//with 'name('login') we label this as a login route.Send the user there when the user needs to login to see the specific page (for middlewares)
 Route::get('/about',[ExampleController::class,"aboutpage"]);
-Route::post('/register',[UserController::class,'register']);
-Route::post('/login',[UserController::class,'login']);
-Route::post('/logout',[UserController::class,'logout']);
+Route::post('/register',[UserController::class,'register'])->middleware('guest');
+Route::post('/login',[UserController::class,'login'])->middleware('guest');
+Route::post('/logout',[UserController::class,'logout'])->middleware('auth');
 
 // Posts related routes
-Route::get('/create-post',[PostController::class,'showCreateForm']);
-Route::post('/create-post',[PostController::class,'storeNewPost']);
+Route::get('/create-post',[PostController::class,'showCreateForm'])->middleware('auth');
+Route::post('/create-post',[PostController::class,'storeNewPost'])->middleware('auth');
 Route::get('/post/{post}',[PostController::class,'viewSinglePost']);

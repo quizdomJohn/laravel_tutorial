@@ -284,6 +284,8 @@ we save it
 and we use it to create the cookie  
 `auth()->login($user);`
 
+<br><hr><hr>
+
 ## Posts
 Check `Modifying the migrations tables` section
 create a table and add your fields
@@ -313,3 +315,19 @@ in there you need to specify the fields
 
 Then in your Controller you call that Model to save the post to database  
 `Post::create($incomingFields);`
+
+<br><hr><hr>
+
+## Middlewares
+In order to prevent user visit links that shouldn't if he is not logged in,instead of going to every function and check the auth,we go to the routes and we add a middleware
+
+
+Protect this route  
+`Route::get('/create-post',[PostController::class,'showCreateForm'])->middleware('auth');`
+
+Navigate to this route when you are unlogged and try to visit a protected  
+`Route::get('/',[UserController::class,"showCorrectHomepage"])->name('login');`  
+
+With same logic we can make some routes to be accessed only by guests  
+`middleware('guest')`  
+
