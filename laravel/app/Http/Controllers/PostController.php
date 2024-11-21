@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function viewSinglePost(){
+        return view('single-post');
+    }
+
+
     public function storeNewPost(Request $request){
         $incomingFields = $request->validate([
             'title'=>'required',
