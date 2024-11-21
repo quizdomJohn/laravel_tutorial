@@ -331,3 +331,24 @@ Navigate to this route when you are unlogged and try to visit a protected
 With same logic we can make some routes to be accessed only by guests  
 `middleware('guest')`  
 
+### Custom middlewares
+type in the terminal  
+`php artisan make:middleware <name>`
+<i>eg: php artisan make:middleware MustBeLoggedIn</i>  
+That creates a new middleware and we give it our own check rules  
+```php
+    public function handle(Request $request, Closure $next): Response
+    {
+        if (auth()->check()) {
+            return $next($request);
+        }
+        return redirect('/')->with('failure','You must be logged in');
+    }
+```
+
+### How to register to Laravel a custom middlewear
+go to `Kernel.php`  
+Add your middleware in `protected $middlewareAliases` array since you want to execute only for specifics requests.  
+If you wanted to execute it for every request you would put it in global scope `protected $middleware`  
+Add it to one of your routes  
+`Route::get('/create-post',[PostController::class,'showCreateForm'])->middleware('isLoggedIn');`
