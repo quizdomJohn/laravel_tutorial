@@ -283,3 +283,16 @@ we save it
 `$user=User::create($incomingFields);`  
 and we use it to create the cookie  
 `auth()->login($user);`
+
+## Posts
+Check `Modifying the migrations tables` section
+create a table and add your fields
+```php
+     Schema::create('posts', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->string('title');
+            $table->longText('body');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');//'foreignId is to associate the two tables. 'user' is the name of the table that we want to look up.'id' is the name of the column.'constrained is so the Lravel doesn't let you create a post if the id of the user doesn't exist.'onDelete(cascade) is to delete also all the posts of a user that deletes his account
+        });
+```
