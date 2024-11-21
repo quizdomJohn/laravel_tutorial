@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function viewSinglePost(){
-        return view('single-post');
+    public function viewSinglePost(Post $post){ // 'post' must match the name we used in route(web.php) as dynamic value
+        return view('single-post',['post'=>$post]); //take the specific post as parameter
     }
 
 
