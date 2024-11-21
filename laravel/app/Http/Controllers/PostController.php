@@ -23,9 +23,10 @@ class PostController extends Controller
         // to find the author of the post
         $incomingFields['user_id']=auth()->id();
         // save the new post to database
-        Post::create($incomingFields);
+        $newPost=Post::create($incomingFields);
 
-        return 'Hey!';
+        //when user creates a post,redirect him to the specific post and include a message to dissplay
+        return redirect("/post/{$newPost->id}")->with('success','New post created');
     }
 
     public function showCreateForm(){
