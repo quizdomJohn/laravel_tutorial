@@ -295,4 +295,21 @@ create a table and add your fields
             $table->longText('body');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');//'foreignId is to associate the two tables. 'user' is the name of the table that we want to look up.'id' is the name of the column.'constrained is so the Lravel doesn't let you create a post if the id of the user doesn't exist.'onDelete(cascade) is to delete also all the posts of a user that deletes his account
         });
+```  
+### Save a new post in database
+You need to create a new model
+type in the command  
+`php artisan make:model <name>`  
+<i>eg: php artisan make:model Post</i>
+
+in there you need to specify the fields  
+```php
+    protected $fillable = [
+        'title',
+        'body',
+        'user_id',
+    ];
 ```
+
+Then in your Controller you call that Model to save the post to database  
+`Post::create($incomingFields);`
