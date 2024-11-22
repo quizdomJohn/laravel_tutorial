@@ -383,3 +383,4 @@ Create a controller for the route
 
 and lastly modify the html page
 - 2nd way: check the policy in the routes file using a middleware
+`Route::delete('/post/{postToDelete}',[PostController::class,'deletePost'])->middleware('can:delete,postToDelete'); // do the route only if he can delete the post`
