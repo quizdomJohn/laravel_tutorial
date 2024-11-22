@@ -7,10 +7,22 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function actuallyUpdate(Post $postToSaveEdit,Request $request){
+        $incomingFields = $request->validate([
+        'title'=>'required',
+        'body'=>'required'
+    ]);
+    // prevent from malicious html content
+    $incomingFields['title']=strip_tags($incomingFields['title']);
+    $incomingFields['body']=strip_tags($incomingFields['body']);    
+
+    $postToSaveEdit->update($incomingFields);  // save the new data to database
+    return redirect("/post/$postToSaveEdit->id")->with("success","Your post was successfully updated!");}
+
+
     public function showEditForm(Post $postToEdit){
         return view('edit-post',['post'=>$postToEdit]);
     }
-
 
     public function deletePost(Post $postToDelete){
     //!  this condition was for the first way of deleting
