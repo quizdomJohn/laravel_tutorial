@@ -362,4 +362,4 @@ Instead of doing the check to every place that needs, we create a policy that do
 Type in ypur terminal  
 `php artisan make:policy PostPolicy --model=Post` 
 
-Make the rule you want in functions `update` and `delete`
+Make the rule you want in functions `update` and `delete` and use the rule in the html by wrapping content in `@can`
