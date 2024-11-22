@@ -8,6 +8,10 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+    public function profile(){
+        return view('profile-posts');
+    }
+
     public function logout(){
         auth()->logout();
         return redirect('/')->with('success','You just logged out'); // 'success' is a name of our choice
