@@ -352,3 +352,14 @@ Add your middleware in `protected $middlewareAliases` array since you want to ex
 If you wanted to execute it for every request you would put it in global scope `protected $middleware`  
 Add it to one of your routes  
 `Route::get('/create-post',[PostController::class,'showCreateForm'])->middleware('isLoggedIn');`
+
+`<br><hr><hr>
+
+## Policy
+We want to show the 'delete' and the 'edit' button when the post belongs to the user that is logged in
+Instead of doing the check to every place that needs, we create a policy that do the checking and we use it whenever it needs  
+
+Type in ypur terminal  
+`php artisan make:policy PostPolicy --model=Post` 
+
+Make the rule you want in functions `update` and `delete`
