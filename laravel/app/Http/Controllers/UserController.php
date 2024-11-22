@@ -10,6 +10,8 @@ class UserController extends Controller
 {
     public function profile(User $userProfile){ // 'userProfile' name should match the name the the dynamic route has in web.php
         // return $userProfile;
+        $thePosts=$userProfile->postsCustomFunction()->get(); // getting the posts of the user
+        // return $thePosts;
         return view('profile-posts',['username'=>$userProfile->username]);
     }
 
