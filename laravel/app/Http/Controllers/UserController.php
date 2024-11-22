@@ -12,7 +12,7 @@ class UserController extends Controller
         // return $userProfile;
         $thePosts=$userProfile->postsCustomFunction()->get(); // getting the posts of the user
         // return $thePosts;
-        return view('profile-posts',['username'=>$userProfile->username,'posts'=>$userProfile->postsCustomFunction()->latest()->get()]); // passing the posts as parameter to use them to html template
+        return view('profile-posts',['username'=>$userProfile->username,'posts'=>$userProfile->postsCustomFunction()->latest()->get(),'quantityOfPosts'=>$userProfile->postsCustomFunction->count()]); // passing the posts as parameter to use them to html template
     }
 
     public function logout(){
