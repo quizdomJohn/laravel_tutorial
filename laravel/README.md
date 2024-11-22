@@ -353,7 +353,7 @@ If you wanted to execute it for every request you would put it in global scope `
 Add it to one of your routes  
 `Route::get('/create-post',[PostController::class,'showCreateForm'])->middleware('isLoggedIn');`
 
-`<br><hr><hr>
+<br><hr><hr>
 
 ## Policy
 We want to show the 'delete' and the 'edit' button when the post belongs to the user that is logged in
@@ -363,3 +363,23 @@ Type in ypur terminal
 `php artisan make:policy PostPolicy --model=Post` 
 
 Make the rule you want in functions `update` and `delete` and use the rule in the html by wrapping content in `@can`
+
+<br><hr><hr>
+
+## Delete
+- 1st way: check the policy in the controller when the icon gets clicked  
+We make a route to handle the request  
+`Route::delete('/post/{postToDelete}',[PostController::class,'deletePost']);`  
+Create a controller for the route  
+```php
+   public function deletePost(Post $postToDelete){
+       if (auth()->user()->cannot('delete',$postToDelete)) { // if the loggedin user can not delete the specific post
+        return 'You can not delete it';
+       }
+       $postToDelete->delete(); // delete the specific post
+       return redirect('/profile/' . auth()->user()->username)->with('success','Post deleted!!!');
+    }
+```  
+
+and lastly modify the html page
+- 2nd way: check the policy in the routes file using a middleware

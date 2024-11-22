@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function deletePost(Post $postToDelete){
+       if (auth()->user()->cannot('delete',$postToDelete)) { // if the loggedin user can not delete the specific post
+        return 'You can not delete it';
+       }
+       $postToDelete->delete(); // delete the specific post
+       return redirect('/profile/' . auth()->user()->username)->with('success','Post deleted!!!');
+    }
+
     public function viewSinglePost(Post $post){ // 'post' must match the name we used in route(web.php) as dynamic value
         return view('single-post',['post'=>$post]); //take the specific post as parameter
     }
