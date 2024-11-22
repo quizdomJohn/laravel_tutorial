@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function showEditForm(Post $postToEdit){
+        return view('edit-post',['post'=>$postToEdit]);
+    }
+
+
     public function deletePost(Post $postToDelete){
     //!  this condition was for the first way of deleting
     //    if (auth()->user()->cannot('delete',$postToDelete)) { // if the loggedin user can not delete the specific post
