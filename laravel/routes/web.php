@@ -29,6 +29,8 @@ Route::get('/create-post',[PostController::class,'showCreateForm'])->middleware(
 Route::post('/create-post',[PostController::class,'storeNewPost'])->middleware('auth');
 Route::get('/post/{post}',[PostController::class,'viewSinglePost']);
 Route::delete('/post/{postToDelete}',[PostController::class,'deletePost'])->middleware('can:delete,postToDelete'); // do the route only if he can delete the post
+Route::get('/post/{postToEdit}/edit',[PostController::class,'showEditForm'])->middleware('can:update,postToEdit'); // for open the form to edit the post
+Route::put('/post/{postToSaveEdit}',[PostController::class,'actuallyUpdate'])->middleware('can:update,postToSaveEdit'); // for saving the edited post
 
 // Profile related routes
 Route::get('/profile/{userProfile:username}',[UserController::class,'profile']); // ':username' -> we declare how to look it up
