@@ -8,8 +8,9 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    public function profile(){
-        return view('profile-posts');
+    public function profile(User $userProfile){ // 'userProfile' name should match the name the the dynamic route has in web.php
+        // return $userProfile;
+        return view('profile-posts',['username'=>$userProfile->username]);
     }
 
     public function logout(){

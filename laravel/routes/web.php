@@ -30,4 +30,4 @@ Route::post('/create-post',[PostController::class,'storeNewPost'])->middleware('
 Route::get('/post/{post}',[PostController::class,'viewSinglePost']);
 
 // Profile related routes
-Route::get('/profile/{userProfile}',[UserController::class,'profile']);
+Route::get('/profile/{userProfile:username}',[UserController::class,'profile']); // ':username' -> we declare how to look it up
